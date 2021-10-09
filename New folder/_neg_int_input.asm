@@ -1,0 +1,38 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+
+
+.CODE 
+
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    CALL NEG_INDEC
+    PUSH AX
+    
+    MOV AH,2
+    MOV DL, 0DH
+    INT 21H
+    MOV DL, 0AH
+    INT 21H
+    
+    POP AX
+    CALL NEG_OUTDEC
+    
+    
+    EXIT:
+        MOV AH, 4CH
+        INT 21H
+    
+MAIN ENDP
+
+INCLUDE NEG_INDEC.ASM
+INCLUDE NEG_OUTDEC.ASM
+
+END MAIN
+
+
+
